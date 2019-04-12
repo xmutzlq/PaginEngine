@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">pagingengine</string>
+
+    <string name="no_data">暂无数据</string>
+</resources>

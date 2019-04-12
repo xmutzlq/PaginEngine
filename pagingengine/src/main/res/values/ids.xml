@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--分页加载预定义Id-->
+    <item type="id" name="id_refresh_view"/>
+    <item type="id" name="id_recycler_view"/>
+</resources>
