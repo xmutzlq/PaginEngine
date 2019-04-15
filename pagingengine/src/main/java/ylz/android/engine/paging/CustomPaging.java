@@ -30,10 +30,10 @@ import ylz.android.engine.paging.view.CustomLoadMoreView;
  * <p>Description：<p>
  */
 public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker {
-    private WeakReference<AppCompatActivity> weakActivity;
+    protected WeakReference<AppCompatActivity> weakActivity;
 
-    public RecyclerView recyclerView;
-    public BasePageListAdapter adapter;
+    protected RecyclerView recyclerView;
+    protected BasePageListAdapter adapter;
 
     //核心代码
     protected IRefresh refreshView;
@@ -160,6 +160,7 @@ public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker
     @Override
     public void onRefresh() {
         prepareAdapter();
+        preRecyclerView();
         recyclerView.setAdapter(adapter);
         adapter.setEnableLoadMore(true);
         liveData = new LivePagedListBuilder(factory, config).build();

@@ -1,4 +1,4 @@
-package ylz.android.engine.paging.main;
+package ylz.android.engine.paging.main.model;
 
 /**
  * <p>Author：     zenglq<p>

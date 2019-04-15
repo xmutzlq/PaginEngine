@@ -10,6 +10,7 @@ import java.util.Map;
 import ylz.android.engine.paging.CustomPaging;
 import ylz.android.engine.paging.ILoader;
 import ylz.android.engine.paging.jectpack.BasePageListAdapter;
+import ylz.android.engine.paging.main.model.StudentModel;
 
 /**
  * <p>Author：     zenglq<p>

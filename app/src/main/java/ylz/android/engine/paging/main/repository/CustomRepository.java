@@ -1,6 +1,5 @@
-package ylz.android.engine.paging.main;
+package ylz.android.engine.paging.main.repository;
 
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.IntRange;
@@ -10,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import ylz.android.engine.paging.ILoader;
+import ylz.android.engine.paging.main.model.StudentModel;
 import ylz.android.engine.paging.util.LogUtils;
 
 /**
@@ -24,7 +24,7 @@ public class CustomRepository implements ILoader {
 
     List<StudentModel> studentModels = new ArrayList<>();
 
-    CustomRepository() {
+    public CustomRepository() {
         for (int i = 0; i < 50; i++) {
             StudentModel studentModel = new StudentModel();
             studentModel.setId(i);

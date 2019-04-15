@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">分页Demo</string>
+
+    <string name="press_again_to_exit">再按一次退出程序</string>
 </resources>
