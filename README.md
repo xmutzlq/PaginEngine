@@ -96,18 +96,16 @@ public class PagingTestActivity extends AppCompatActivity {
     }
 }
 ```
-# Attributes
+
+# PreSet
 CustomPaging还提供了预设置项
 
 | 方法 | 描述 |
 |:---|:---|
-| bl_arrowWidth | Width of the arrow, default 8dp |
-| bl_arrowHeight | Height of the arrow, default 8dp |
-| bl_arrowPosition | Position of the arrow, default 12dp |
-| bl_cornersRadius | Corner radius of the BubbleLayout, default 0dp |
-| bl_bubbleColor | Color of the BubbleLayout, default WHITE |
-| bl_strokeWidth | Width of the stroke, default 0dp |
-| bl_strokeColor | Color of the stroke, default GLAY |
+| preRecyclerView | RecyclerView基础配置，xml默认已设置LinearLayoutManager |
+| getEmptyView | 可以自定义空数据页 |
+| onItemClickListener | Item点击事件 |
+| makeHeaderListData | 比较重要，如果有必要可以对数据进行重组，类似Section |
 
 ## License
 
