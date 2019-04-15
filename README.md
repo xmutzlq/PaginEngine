@@ -13,6 +13,11 @@ dependencies {
     implementation 'com.github.xmutzlq:PaginEngine:1.0.0'
 }
 ```
+
+## Describe
+此分页框架为项目中整理抽离出的独立代码(APaging)，结合BRVAH的BaseQuickAdapter，使分页界面更快速开发，代码更美观，已在项目中使用。
+除此之外还封装了Google的Paging分页框架，去除原有的PagedListAdapter，改成结合BRVAH的BaseQuickAdapter，使分页界面更快速开发，代码更美观，已在项目中使用。
+
 ## Usage
   
 
