@@ -67,6 +67,8 @@ public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker
     protected boolean isTestModel() {return false;}
     /** Item点击事件 **/
     protected void onItemClickListener(BaseQuickAdapter adapter, View view, int position){}
+    /** 默认页数 **/
+    protected int getDefaultPageSize() {return 10;}
 
     @Override
     public void work(AppCompatActivity activity) {
@@ -138,9 +140,9 @@ public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker
         });
 
         config = new PagedList.Config.Builder()
-                .setInitialLoadSizeHint(10)              //设置首次加载的数量；
-                .setPageSize(10)                         //设置每一页加载的数量；
-                .setEnablePlaceholders(false)            //配置是否启动PlaceHolders
+                .setInitialLoadSizeHint(getDefaultPageSize())              //设置首次加载的数量；
+                .setPageSize(getDefaultPageSize())                         //设置每一页加载的数量；
+                .setEnablePlaceholders(false)                              //配置是否启动PlaceHolders
                 .build();
         factory = new CustomPageDataSourceFactory(loader);
         liveData = new LivePagedListBuilder(factory, config).build();
