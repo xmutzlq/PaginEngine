@@ -25,6 +25,9 @@ public class CustomLoader {
 
     public ILoader.IDataResult dataResult;
 
+    private int page;
+    private int pageSize;
+
     private boolean isRefresh;                  //是否下拉刷新
     private boolean isDownRefresh;              //是否下拉刷新
     private boolean isFull;                     //是否全部加载完
@@ -33,6 +36,14 @@ public class CustomLoader {
     private boolean isNeedComplete = true;      //是否需要回调Complete状态，修复网络加载生命周期异常问题
 
     private Map<String, Object> params;
+
+    public int getPage() {
+        return page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
 
     public void setDataSource(ILoader loader) {
         this.loader = loader;
@@ -55,6 +66,8 @@ public class CustomLoader {
     }
 
     public void fetchData(final boolean isPullRefresh, int page, int pageSize) {
+        this.page = page;
+        this.pageSize = pageSize;
         if(loader == null) return;
         if(isRefresh) return;
         isRefresh = true;
@@ -118,6 +131,10 @@ public class CustomLoader {
 
     public boolean isDownRefresh() {
         return isDownRefresh;
+    }
+
+    public boolean isError() {
+        return isError;
     }
 
     public void clear() {

@@ -108,6 +108,7 @@ public abstract class APaging implements IRegisterRefresh, IPagingWorker {
             } else if(Loader.STATE_ERROR == state) { //请求失败状态
                 LogUtils.eTag("zlq", "STATE_ERROR");
                 refreshView.setRefresh(false);
+                adapter.loadMoreFail();
             }
         });
 

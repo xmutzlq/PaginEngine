@@ -1,6 +1,7 @@
 package ylz.android.engine.paging;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker
     protected CustomLoader loader;
     protected ILoader aLoader;
 
+    Observer<PagedList<T>> observer;
     LiveData<PagedList<T>> liveData;
     CustomPageDataSourceFactory factory;
     PagedList.Config config;
@@ -58,9 +60,8 @@ public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker
     }
 
     public void stopPaging() {
-        if(liveData != null
-                && weakActivity != null && weakActivity.get() != null) {
-            liveData.removeObservers(weakActivity.get());
+        if(liveData != null && observer != null) {
+            liveData.removeObserver(observer);
         }
     }
 
@@ -133,6 +134,7 @@ public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker
             } else if(Loader.STATE_ERROR == state) { //请求失败状态
                 LogUtils.eTag("zlq", "STATE_ERROR");
                 refreshView.setRefresh(false);
+                adapter.loadMoreFail();
             }
         });
 
@@ -153,7 +155,9 @@ public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker
                 .build();
         factory = new CustomPageDataSourceFactory(loader);
         liveData = new LivePagedListBuilder(factory, config).build();
-        liveData.observe(activity, adapter::submitList);
+
+        observer = ts -> adapter.submitList(ts);
+        liveData.observe(activity, observer);
     }
 
     private void prepareAdapter() {
@@ -162,7 +166,12 @@ public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker
         adapter.setOnItemClickListener((adapter1, view, position) -> {
             onItemClickListener(adapter1, view, position);
         });
-        adapter.setOnLoadMoreListener(() -> {}, recyclerView);
+        adapter.setOnLoadMoreListener(() -> {
+            if(loader != null && loader.isError()) {
+                LogUtils.eTag("zlq", "ErrorReLoad");
+                loader.fetchData(false, loader.getPage(), loader.getPageSize());
+            }
+        }, recyclerView);
         adapter.setLoadMoreView(new CustomLoadMoreView()); // 加载更多的View
     }
 
