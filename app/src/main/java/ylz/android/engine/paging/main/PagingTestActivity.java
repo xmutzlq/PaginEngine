@@ -33,5 +33,6 @@ public class PagingTestActivity extends AppCompatActivity {
         GankRepository customRepository = new GankRepository();
         GankPaging gankPaging = new GankPaging(customRepository);
         gankPaging.work(this);
+//        gankPaging.stopPaging();
     }
 }

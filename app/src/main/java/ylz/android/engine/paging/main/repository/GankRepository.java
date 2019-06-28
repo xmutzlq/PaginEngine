@@ -21,15 +21,14 @@ public class GankRepository implements ILoader {
 
     @Override
     public void onLoadData(Map<String, Object> params, int page, int pageSize, ILoadResult loadResult) {
-
-    String url = AppConstant.API_URL + "/" + pageSize + "/" + page;
-    OkGo.<String>get(url).tag(this).execute(new StringCallback() {
-            @Override
-            public void onSuccess(Response<String> response) {
-                Gson gson = new Gson();
-                GankResponseEntity gankModels = gson.fromJson(response.body(), GankResponseEntity.class);
-                loadResult.onLoadResult(gankModels.results);
-            }
-        });
+        String url = AppConstant.API_URL + "/" + pageSize + "/" + page;
+        OkGo.<String>get(url).tag(this).execute(new StringCallback() {
+                @Override
+                public void onSuccess(Response<String> response) {
+                    Gson gson = new Gson();
+                    GankResponseEntity gankModels = gson.fromJson(response.body(), GankResponseEntity.class);
+                    loadResult.onLoadResult(gankModels.results);
+                }
+            });
     }
 }

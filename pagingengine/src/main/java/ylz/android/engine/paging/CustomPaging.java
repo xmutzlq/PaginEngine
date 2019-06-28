@@ -57,6 +57,13 @@ public abstract class CustomPaging<T> implements IRegisterRefresh, IPagingWorker
         }
     }
 
+    public void stopPaging() {
+        if(liveData != null
+                && weakActivity != null && weakActivity.get() != null) {
+            liveData.removeObservers(weakActivity.get());
+        }
+    }
+
     /** 初始化RecyclerView配置(LayoutManager已经在xml文件中配置过) **/
     protected void preRecyclerView(){}
     /** 给有StickyHeader的列表使用 **/
